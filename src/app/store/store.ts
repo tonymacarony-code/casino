@@ -1,4 +1,5 @@
 import { userApi } from '../../entities/user/api/userApi';
+import rouletteSlice from '../../games/roulette/slices/rouletteSlice';
 import { userSlice } from './../../entities/user/slices/userSlice';
 import { configureStore } from '@reduxjs/toolkit'
 
@@ -7,6 +8,7 @@ export const store = configureStore({
     reducer: {
         user: userSlice.reducer,
         [userApi.reducerPath]: userApi.reducer,
+        roulette: rouletteSlice
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(userApi.middleware),
