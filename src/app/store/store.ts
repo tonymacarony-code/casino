@@ -8,7 +8,7 @@ export const store = configureStore({
     reducer: {
         user: userSlice.reducer,
         [userApi.reducerPath]: userApi.reducer,
-        roulette: rouletteSlice
+        roulette: rouletteSlice,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(userApi.middleware),
