@@ -36,7 +36,7 @@ const GameSceneActionProvider: FC<IGameSceneActionProviderProps> = ({ children }
 
     useEffect(() => {
         if (lifecycle === RouletteLifecycle.INFO) {
-            const lifeTimeout = setTimeout(() => {
+            setTimeout(() => {
                 dispatch(setRouletteLifecycle(RouletteLifecycle.READY_TO_START))
                 dispatch(clearRoulette())
                 dispatch(clearRouletteSpinState())
