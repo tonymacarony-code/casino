@@ -1,62 +1,93 @@
-import React, { FC } from 'react'
-import { useAppSelector } from '../../../../app/store/hooks'
-import { selectActiveNumber, selectCurrentBet, setCurrentBet } from '../../slices/rouletteSlice'
+import { FC } from 'react';
+import { useAppSelector } from '../../../../app/store/hooks';
+import { selectActiveNumber, selectCurrentBet } from '../../slices/rouletteSlice';
+import ScoreWindow from '../../shared/scoreWindow';
+import { selectBalance } from '../../../../entities/wallet/slice/walletSlice';
 
 interface IInfoPanelProps {
 
+};
+
+export interface IScoreItem {
+    id: 'balance' | 'winBet' | 'currentBet' | 'activeNumber';
+    title: string;
+    icon: string;
 }
 
-type Item = {
-    id: 'balance' | 'winBet' | 'bet' | 'activeNumber',
-    title: string,
-    value: number,
-    icon: string
-}
-
-
-const ITEMS: Item[] = [
+const ITEMS: IScoreItem[] = [
     {
-        title: 'Balance',
         id: 'balance',
-        value: 0,
-        icon: ''
+        title: 'Balance',
+        icon: '',
     },
     {
-        title: 'Win bet',
         id: 'winBet',
-        value: 0,
-        icon: ''
+        title: 'Win Bet',
+        icon: '',
     },
     {
+        id: 'currentBet',
         title: 'Bet',
-        id: 'bet',
-        value: 0,
-        icon: ''
+        icon: '',
     },
     {
-        title: 'Bet number',
         id: 'activeNumber',
-        value: 0,
-        icon: ''
+        title: 'Bet number',
+        icon: '',
     },
 ]
 
-const InfoPanel: FC<IInfoPanelProps> = () => {
-
-    const currentBet = useAppSelector(selectCurrentBet)
-    const activeNumber = useAppSelector(selectActiveNumber)
+const InfoPanel: FC<IInfoPanelProps> = ({ }) => {
+    const balance = useAppSelector(selectBalance);
+    const activeNumber = useAppSelector(selectActiveNumber);
+    const currentBet = useAppSelector(selectCurrentBet);
+    const winBet = 100;
 
     return (
-        <div className='flex justify-between px-24'>
+        <div className="flex justify-between px-10">
             {ITEMS.map((item) => (
-                <div key={item.id}>
+                <div
+                    key={item.id}
+                >
                     <div>{item.title}</div>
-                    <div>{item.id === 'activeNumber' && activeNumber}</div>
-                    <div>{item.id === 'bet' && currentBet}</div>
+                    <div>
+                        {item.id === 'balance' && (
+                            <ScoreWindow
+                                icon="balance"
+                            >
+                                {balance}
+                            </ScoreWindow>
+                        )}
+                        {item.id === 'winBet' && (
+                            <ScoreWindow
+                                icon="winBet"
+                            >
+                                <div className="pr-1">
+                                    {winBet}
+                                </div>
+                            </ScoreWindow>
+                        )}
+                        {item.id === 'currentBet' && (
+                            <ScoreWindow
+                                icon="currentBet"
+                            >
+                                {currentBet}
+                            </ScoreWindow>
+                        )}
+                        {item.id === 'activeNumber' && (
+                            <ScoreWindow
+                                icon="activeNumber"
+                            >
+                                <div className="pr-6">
+                                    {activeNumber}
+                                </div>
+                            </ScoreWindow>
+                        )}
+                    </div>
                 </div>
             ))}
         </div>
     )
-}
+};
 
-export default InfoPanel
+export default InfoPanel;
