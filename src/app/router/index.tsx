@@ -7,7 +7,7 @@ import LoginPage from "../../pages/auth/login";
 import RegisterPage from "../../pages/auth/register";
 import RoulettePage from "../../pages/games/roulette";
 import SlotsPage from "../../pages/games/slots";
-import HammerPage from "../../pages/games/hammer";
+
 
 export const router = createBrowserRouter([
     {
@@ -50,10 +50,7 @@ export const router = createBrowserRouter([
                 Component: SlotsPage,
 
             },
-            {
-                path: 'hammer',
-                Component: HammerPage,
-            }
+
         ]
     }
 ])

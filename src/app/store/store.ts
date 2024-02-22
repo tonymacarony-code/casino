@@ -14,7 +14,8 @@ export const store = configureStore({
         roulette: rouletteSlice,
         wallet: walletSlice,
         rouletteSpin: rouletteSpinSlice,
-        slot: slotSlice
+        slot: slotSlice,
+
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(userApi.middleware),

@@ -17,7 +17,6 @@ const MainPage: FC<IMainPageProps> = () => {
         <div className='flex gap-4'>
             <Link to={ROUTES.games.roulette}>Roulette</Link>
             <Link to={ROUTES.games.slots}>Slots</Link>
-            <Link to={ROUTES.games.hammer}>Hammer</Link>
             <div>{nickname}</div>
         </div>
     )
