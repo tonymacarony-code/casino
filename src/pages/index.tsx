@@ -17,7 +17,7 @@ const MainPage: FC<IMainPageProps> = () => {
         <div className='flex gap-4'>
             <Link to={ROUTES.games.roulette}>Roulette</Link>
             <Link to={ROUTES.games.slots}>Slots</Link>
-            <div>{nickname}</div>
+            <div>My nickname is {nickname} and this info we get using RTK Query</div>
         </div>
     )
 }
